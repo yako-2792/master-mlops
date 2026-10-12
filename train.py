@@ -24,11 +24,16 @@ FEATURES = [
 
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--C", type=float, default=1.0, help="inverse regularization strength (smaller = stronger)")
-    p.add_argument("--class-weight", choices=["none", "balanced"], default="none")
-    p.add_argument("--max-iter", type=int, default=1000)
-    p.add_argument("--seed", type=int, default=42)
-    p.add_argument("--experiment-name", default="student-dropout-logreg")
+    p.add_argument("--C", type=float, default=1.0,
+                   help="inverse regularization strength (smaller = stronger)")
+    p.add_argument("--class-weight", choices=["none", "balanced"], default="none",
+                   help="class weights: 'balanced' weights classes inversely to their frequency")
+    p.add_argument("--max-iter", type=int, default=1000,
+                   help="maximum number of solver iterations")
+    p.add_argument("--seed", type=int, default=42,
+                   help="random seed for the train/test split and the model")
+    p.add_argument("--experiment-name", default="student-dropout-logreg",
+                   help="name of the MLflow experiment that groups the runs")
     return p.parse_args()
 
 
